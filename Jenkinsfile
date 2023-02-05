@@ -1,8 +1,8 @@
 pipeline {
     agent any 
-    tools {
-        maven "3.8.5"
-    
+     docker {
+            image 'node:16-buster-slim'
+            args '-p 3000:3000'
     }
     stages {
         stage('Compile and Clean') { 
