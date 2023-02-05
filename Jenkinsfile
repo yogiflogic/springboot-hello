@@ -14,7 +14,6 @@ pipeline {
                 sh "mvn package"
             }
         }
-        withDockerContainer('alpine') {
         stage('Build Docker image'){
           
             steps {
@@ -22,7 +21,6 @@ pipeline {
                 sh 'ls'
                 sh 'docker build -t  yogiflogic/docker_jenkins_springboot:${BUILD_NUMBER} .'
             }
-        }
         }
         stage('Docker Login'){
             
