@@ -1,14 +1,11 @@
 pipeline {
     agent any 
-     docker {
-            image 'node:16-buster-slim'
-            args '-p 3000:3000'
-    }
+    agent { docker 'maven:3.3.3' }
     stages {
         stage('Compile and Clean') { 
             steps {
                 // Run Maven on a Unix agent.
-              
+                sh 'mvn install'
                 sh "mvn clean compile"
             }
         }
