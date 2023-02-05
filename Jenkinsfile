@@ -1,5 +1,4 @@
 pipeline {
-    agent any 
     agent { docker 'maven:3.3.3' }
     stages {
         stage('Compile and Clean') { 
