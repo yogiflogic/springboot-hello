@@ -14,19 +14,21 @@ pipeline {
                 sh "mvn package"
             }
         }
+        withDockerContainer('alpine') {
         stage('Build Docker image'){
           
             steps {
                 echo "Hello Java Express"
                 sh 'ls'
-                sh 'docker build -t  anvbhaskar/docker_jenkins_springboot:${BUILD_NUMBER} .'
+                sh 'docker build -t  yogiflogic/docker_jenkins_springboot:${BUILD_NUMBER} .'
             }
+        }
         }
         stage('Docker Login'){
             
             steps {
                  withCredentials([string(credentialsId: 'yogiflogic', variable: 'Dockerpwd')]) {
-                    sh "docker login -u anvbhaskar -p ${Dockerpwd}"
+                    sh "docker login -u yogiflogic -p ${Dockerpwd}"
                 }
             }                
         }
